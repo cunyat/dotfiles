@@ -1,3 +1,0 @@
-[submodule "apps/rofi/deps/rofi"]
-	path = apps/rofi/deps/rofi
-	url = git@github.com:davatorium/rofi.git
