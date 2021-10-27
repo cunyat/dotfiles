@@ -1,6 +1,7 @@
 nvim/.netrwhist
 nvim/fzf
 nvim/pack
+nvim/autoload
 
 scripts/**/deps
 

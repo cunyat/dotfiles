@@ -10,6 +10,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
+Plug 'overcache/NeoSolarized'
 
 call plug#end()
 
@@ -19,8 +20,8 @@ syntax on
 set background=dark
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
-colorscheme onedark
-let g:airline_theme='onedark'
+colorscheme NeoSolarized
+let g:airline_theme='solarized'
 
 " add line numbers
 set number
@@ -59,7 +60,7 @@ so ~/.config/nvim/maps.vim
 " if hidden is not set, TextEdit might fail.
 set hidden
 " Better display for messages
-set cmdheight=2
+set cmdheight=1
 " Smaller updatetime for CursorHold & CursorHoldI
 set updatetime=300
 " don't give |ins-completion-menu| messages.
@@ -79,7 +80,6 @@ let g:go_list_type = "quickfix"
 let g:go_fmt_autosave = 1
 let g:go_rename_command="gopls"
 
-
 let g:go_highlight_types = 1
 let g:go_highlight_fields = 1
 let g:go_highlight_functions = 1
@@ -91,7 +91,7 @@ let g:fzf_action = {
       \ 'ctrl-s': 'split',
       \ 'ctrl-v': 'vsplit'
       \ }
-let g:fzf_preview_window = 'right:60%'
+let g:fzf_preview_window = 'right:40%'
 
 augroup fzf
   autocmd!
