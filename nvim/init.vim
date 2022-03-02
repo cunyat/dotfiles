@@ -11,13 +11,14 @@ Plug 'airblade/vim-gitgutter'
 Plug 'fatih/vim-go'
 Plug 'neoclide/coc.nvim', {'do': 'yarn install --frozen-lockfile'}
 Plug 'overcache/NeoSolarized'
+Plug 'vim-scripts/bash-support.vim'
 
 call plug#end()
 
 syntax on
 
 " set backgrounds
-set background=dark
+set background=light
 let $NVIM_TUI_ENABLE_TRUE_COLOR=1
 set termguicolors
 colorscheme NeoSolarized

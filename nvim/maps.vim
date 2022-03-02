@@ -26,7 +26,7 @@ nnoremap <Leader>w :w<CR>
 map <Leader>p :GFiles<CR>
 map <Leader>P :Files<CR>
 map <Leader>k :Ag<CR>
-map <Leader>ob :Buffers<CR>
+map <Leader>b :Buffers<CR>
 
 " faster scrolling
 nnoremap <C-j> 10<C-e>
