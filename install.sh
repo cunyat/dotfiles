@@ -12,7 +12,7 @@ echo "dotfiles: $dotfiles"
 echo "configDir: $configDir"
 
 for config in $configs; do
-    ln -sf $dotfiles/$config $configDir
+    ln -sf -t $configDir $PWD/$dotfiles/$config
 done
 
 scripts=$(ls ${dotfiles}/scripts)
