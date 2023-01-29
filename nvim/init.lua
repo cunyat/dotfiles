@@ -1,8 +1,23 @@
-require("plugins")
-require("autocmds")
-require("mappings")
+require("cunyat.plugins")
+require("cunyat.autocmds")
+require("cunyat.mappings")
 
 -- TODO: move this settings into a module
+
+vim.api.nvim_create_user_command(
+    "ReloadConfig",
+    function()
+        for name, _ in pairs(package.loaded) do
+            if name:match("^cunyat") then
+                package.loaded[name] = nil
+            end
+        end
+
+        dofile(vim.env.MYVIMRC)
+        vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+    end,
+    { bang = true }
+)
 
 local set = vim.opt
 
@@ -46,8 +61,5 @@ vim.cmd.set("mouse+=a")
 vim.cmd.syntax("on")
 
 vim.api.nvim_command('filetype plugin indent on')
-
-vim.g.fzf_action = {["ctrl-s"] = "split", ["ctrl-v"] = "vsplit"}
-vim.g.fzf_preview_window = "right:40%"
 
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
