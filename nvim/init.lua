@@ -23,8 +23,8 @@ local set = vim.opt
 
 -- Colorscheme
 vim.cmd.colorscheme("kanagawa")
-vim.g.airline_theme = "deus"
 set.background = "dark"
+-- set.background = "light"
 
 set.tabstop = 4
 set.softtabstop = 4
@@ -36,6 +36,7 @@ set.backspace = "indent,eol,start"
 set.showmode = false
 set.ruler = true
 set.encoding = "utf-8"
+set.fileencoding = "utf-8"
 set.cursorline = true
 set.showmatch = true
 set.ignorecase = true
@@ -63,3 +64,4 @@ vim.cmd.syntax("on")
 vim.api.nvim_command('filetype plugin indent on')
 
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
+

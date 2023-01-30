@@ -5,16 +5,28 @@ return require("packer").startup(function()
 
     -- LSP
     use { "folke/neodev.nvim" }
-    use { "hrsh7th/nvim-cmp", config = [[require("cunyat.config.cmp")]] }
-    use { "hrsh7th/cmp-nvim-lsp", after = "nvim-cmp" }
+    use {
+        "hrsh7th/nvim-cmp",
+        config = [[require("cunyat.config.cmp")]],
+        requires = {
+            { "hrsh7th/cmp-nvim-lsp" },
+            { "L3MON4D3/LuaSnip" },
+            { "saadparwaiz1/cmp_luasnip" },
+            { "hrsh7th/cmp-buffer" },
+            { "hrsh7th/cmp-path" },
+            { "hrsh7th/cmp-cmdline" },
+        },
+    }
     use { "neovim/nvim-lspconfig", after = "cmp-nvim-lsp", config = [[require("cunyat.config.lsp")]] }
 
     -- Visuals
-    use { "vim-airline/vim-airline" }
-    use { "vim-airline/vim-airline-themes" }
-    use { "joshdick/onedark.vim" }
-    use { "jiangmiao/auto-pairs" }
+    use {
+        "nvim-lualine/lualine.nvim",
+        requires = { "kyazdani42/nvim-web-devicons" },
+        config = [[require("cunyat.config.lualine")]],
+    }
     use { "rebelot/kanagawa.nvim" }
+
 
     -- File searching & project navigation
     use {
@@ -61,6 +73,6 @@ return require("packer").startup(function()
     -- Utilities
     use { "folke/which-key.nvim" }
     use { "karb94/neoscroll.nvim", config = [[require("cunyat.config.neoscroll")]] }
-    use { "windwp/nvim-autopairs", config = function() require("nvim-autopairs").setup {} end }
+    use { "windwp/nvim-autopairs", config = [[require("cunyat.config.autopairs")]] }
 
 end)
