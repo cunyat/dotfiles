@@ -1,5 +1,3 @@
-vim.api.nvim_create_augroup('bufcheck', { clear = true })
-
 -- Disable syntax on large files (>10k lines)
 vim.api.nvim_create_autocmd("BufEnter", {
     -- group = syntax_group,
@@ -23,8 +21,6 @@ vim.api.nvim_create_autocmd("Filetype", {
     callback = function()
         local filter = vim.fn.expand('%:t'):match("(.+)%..+$") .. ".php$"
 
-        vim.notify("Registering gt keymap for PHP for: " .. filter)
-
         vim.keymap.set("n", "gt", function()
             require("telescope.builtin").find_files({
                 path_display = { "truncate" },
@@ -33,4 +29,45 @@ vim.api.nvim_create_autocmd("Filetype", {
             })
         end)
     end
+})
+
+vim.api.nvim_create_user_command(
+    "ReloadConfig",
+    function()
+        for name, _ in pairs(package.loaded) do
+            if name:match("^cunyat") then
+                package.loaded[name] = nil
+            end
+        end
+
+        dofile(vim.env.MYVIMRC)
+        vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
+    end,
+    { bang = true }
+)
+
+vim.api.nvim_create_autocmd('TextYankPost', {
+    desc = 'Highlight when yanking text',
+    callback = function()
+        vim.highlight.on_yank()
+    end
+})
+
+vim.api.nvim_create_user_command("FormatDisable", function(args)
+    if args.bang then
+        -- FormatDisable! will disable formatting just for this buffer
+        vim.b.disable_autoformat = true
+    else
+        vim.g.disable_autoformat = true
+    end
+end, {
+    desc = "Disable autoformat-on-save",
+    bang = true,
+})
+
+vim.api.nvim_create_user_command("FormatEnable", function()
+    vim.b.disable_autoformat = false
+    vim.g.disable_autoformat = false
+end, {
+    desc = "Re-enable autoformat-on-save",
 })
