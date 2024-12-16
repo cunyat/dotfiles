@@ -10,8 +10,6 @@ vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 
 local telescope = require('telescope.builtin')
 
-local ts_small_theme = require('telescope.themes').get_dropdown();
-
 vim.keymap.set('n', '<leader>sf', telescope.find_files, {})
 vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
 vim.keymap.set('n', '<leader>sw', function()
@@ -49,7 +47,7 @@ local on_attach = function(client, bufnr)
     vim.keymap.set({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help, bufopts)
     vim.keymap.set('n', '<leader>d', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
-    vim.keymap.set('n', '<leader>ca', vim.lsp.buf.code_action, bufopts)
+    vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', '<leader>ds', telescope.lsp_document_symbols, bufopts)
     vim.keymap.set('n', '<leader>ws', telescope.lsp_dynamic_workspace_symbols, bufopts)
 end
