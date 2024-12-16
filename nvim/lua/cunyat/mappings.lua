@@ -10,6 +10,8 @@ vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 
 local telescope = require('telescope.builtin')
 
+local ts_small_theme = require('telescope.themes').get_dropdown();
+
 vim.keymap.set('n', '<leader>sf', telescope.find_files, {})
 vim.keymap.set('n', '<leader>gf', telescope.git_files, {})
 vim.keymap.set('n', '<leader>sw', function()
@@ -23,6 +25,8 @@ end)
 vim.keymap.set('n', '<leader>sg', telescope.live_grep)
 vim.keymap.set('n', '<leader>sh', telescope.help_tags, {})
 vim.keymap.set('n', '<leader><space>', telescope.buffers, {})
+vim.keymap.set('n', '<leader>"', telescope.registers, {})
+vim.keymap.set('n', '<leader>st', telescope.builtin, {})
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
 vim.keymap.set('i', '<C-c>', '<Esc>')
@@ -56,3 +60,7 @@ vim.api.nvim_create_autocmd('lspattach', {
     group = vim.api.nvim_create_augroup('userlspconfig', {}),
     callback = on_attach
 })
+
+-- stay on visual after indenting
+vim.keymap.set('v', '>', '>gv', opts)
+vim.keymap.set('v', '<', '<gv', opts)

@@ -5,6 +5,9 @@ return {
     config = function(plugin, opts)
         require("nvim-treesitter.configs").setup(opts)
     end,
+    dependencies = {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+    },
     opts = {
         highlight = { enable = true },
         indent = { enable = true },
