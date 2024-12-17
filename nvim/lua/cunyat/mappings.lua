@@ -69,3 +69,7 @@ vim.keymap.set('n', '-', oil.open, { noremap = true, silent = true, desc = "Open
 vim.keymap.set('n', '_', function()
     oil.open(vim.fn.getcwd())
 end, { noremap = true, silent = true, desc = "Open parent directory" })
+
+-- system clipboard
+vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true, silent = true, desc = "Yank into system register" })
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"*p', { noremap = true, silent = true, desc = "Paste from system register" })
