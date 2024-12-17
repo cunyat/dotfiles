@@ -62,3 +62,10 @@ vim.api.nvim_create_autocmd('lspattach', {
 -- stay on visual after indenting
 vim.keymap.set('v', '>', '>gv', opts)
 vim.keymap.set('v', '<', '<gv', opts)
+
+-- oil
+local oil = require('oil')
+vim.keymap.set('n', '-', oil.open, { noremap = true, silent = true, desc = "Open parent directory" })
+vim.keymap.set('n', '_', function()
+    oil.open(vim.fn.getcwd())
+end, { noremap = true, silent = true, desc = "Open parent directory" })
