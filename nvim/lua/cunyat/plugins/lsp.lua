@@ -44,11 +44,13 @@ return {
 
         lspconfig.gopls.setup({ capabilities = capabilities })
         lspconfig.terraformls.setup({ capabilities = capabilities })
+        lspconfig.tflint.setup({ capabilities = capabilities })
         lspconfig.nil_ls.setup({ capabilities = capabilities })
         lspconfig.phpactor.setup({ capabilities = capabilities })
         lspconfig.jsonnet_ls.setup({ capabilities = capabilities })
         lspconfig.rust_analyzer.setup({ capabilities = capabilities })
         lspconfig.clangd.setup({ capabilities = capabilities })
+        lspconfig.dockerls.setup({ capabilities = capabilities })
         lspconfig.yamlls.setup(yaml_companion)
 
         vim.g.zig_fmt_parse_errors = 0
@@ -87,6 +89,8 @@ return {
             mapping = cmp.mapping.preset.insert({
                 ['<C-p>'] = cmp.mapping.select_prev_item(cmp_select),
                 ['<C-n>'] = cmp.mapping.select_next_item(cmp_select),
+                ['<C-d>'] = cmp.mapping.scroll_docs(-4),
+                ['<C-u>'] = cmp.mapping.scroll_docs(4),
                 ['<C-y>'] = cmp.mapping.confirm({ select = true }),
                 ['<C-Space>'] = cmp.mapping.complete(),
             }),
@@ -97,6 +101,23 @@ return {
             }, {
                 { name = 'buffer' },
             })
+        })
+
+        cmp.setup.cmdline({ '/', '?' }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = {
+                { name = 'buffer' }
+            }
+        })
+
+        cmp.setup.cmdline({ ':' }, {
+            mapping = cmp.mapping.preset.cmdline(),
+            sources = cmp.config.sources({
+                { name = 'path' }
+            }, {
+                { name = 'cmdline' }
+            }),
+            matching = { disallow_symbol_nonprefix_matching = false }
         })
 
         vim.diagnostic.config({
