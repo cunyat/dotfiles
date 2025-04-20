@@ -1,11 +1,4 @@
--- TODO: move this settings into a module
-
 local set = vim.opt
-
--- Colorscheme todo: set it on theme file
--- vim.cmd.colorscheme("cat")
--- set.background = "dark"
--- set.background = "light"
 
 set.tabstop = 4
 set.softtabstop = 4

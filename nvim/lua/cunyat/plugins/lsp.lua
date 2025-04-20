@@ -10,10 +10,6 @@ return {
         'saadparwaiz1/cmp_luasnip',
         'someone-stole-my-name/yaml-companion.nvim',
         {
-            'j-hui/fidget.nvim',
-            config = true,
-        },
-        {
             'stevearc/conform.nvim',
             opts = {
                 formatters_by_ft = {},
@@ -51,6 +47,7 @@ return {
         lspconfig.rust_analyzer.setup({ capabilities = capabilities })
         lspconfig.clangd.setup({ capabilities = capabilities })
         lspconfig.dockerls.setup({ capabilities = capabilities })
+        lspconfig.jdtls.setup({ capabilities = capabilities })
         lspconfig.yamlls.setup(yaml_companion)
 
         vim.g.zig_fmt_parse_errors = 0
@@ -61,7 +58,7 @@ return {
                 zls = {
                     enable_inlay_hints = true,
                     enable_snippets = true,
-                    warn_style = true,
+                    warn_style = false,
                     enable_build_on_save = true,
                 },
             },
