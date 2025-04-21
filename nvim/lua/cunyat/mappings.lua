@@ -3,10 +3,13 @@ vim.g.mapleader = ' '
 local opts = { noremap = true, silent = true }
 
 vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+vim.keymap.set('n', '[d', function()
+    vim.diagnostic.jump({ diagnostic = vim.diagnostic.get_prev() })
+end, opts)
+vim.keymap.set('n', ']d', function()
+    vim.diagnostic.jump({ diagnostic = vim.diagnostic.get_next() })
+end, opts)
 vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
-
 
 local telescope = require('telescope.builtin')
 
@@ -35,17 +38,18 @@ vim.keymap.set('n', '<leader>u', vim.cmd.UndotreeToggle)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
     -- mappings.
     -- see `:help vim.lsp.*` for documentation on any of the below functions
     local bufopts = { noremap = true, silent = true, buffer = bufnr }
-    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-    vim.keymap.set('n', 'gr', telescope.lsp_references, bufopts)
-    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
+
+    vim.keymap.set('n', '<leader>gd', vim.lsp.buf.definition, bufopts)
+    vim.keymap.set('n', '<leader>gr', telescope.lsp_references, bufopts)
+    vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, bufopts)
+    vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, bufopts)
     vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
     vim.keymap.set({ 'n', 'i' }, '<C-k>', vim.lsp.buf.signature_help, bufopts)
-    vim.keymap.set('n', '<leader>d', vim.lsp.buf.type_definition, bufopts)
+    vim.keymap.set('n', '<leader>gt', vim.lsp.buf.type_definition, bufopts)
     vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, bufopts)
     vim.keymap.set({ 'n', 'v' }, '<leader>ca', vim.lsp.buf.code_action, bufopts)
     vim.keymap.set('n', '<leader>ds', telescope.lsp_document_symbols, bufopts)
@@ -73,3 +77,9 @@ end, { noremap = true, silent = true, desc = "Open parent directory" })
 -- system clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>y', '"+y', { noremap = true, silent = true, desc = "Yank into system register" })
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"+p', { noremap = true, silent = true, desc = "Paste from system register" })
+
+-- terminal
+vim.keymap.set({ 't' }, '<ESC><ESC>', '<C-\\><C-N>', {})
+
+-- disable s in normal and visual mode mode
+vim.keymap.set({ 'v', 'n' }, 's', '<Nop>', {})

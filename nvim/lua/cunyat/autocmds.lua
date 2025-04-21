@@ -71,3 +71,15 @@ vim.api.nvim_create_user_command("FormatEnable", function()
 end, {
     desc = "Re-enable autoformat-on-save",
 })
+
+local terminal_au_group = vim.api.nvim_create_augroup('me.terminal', { clear = true })
+
+vim.api.nvim_create_autocmd('TermOpen', {
+    desc = "Set default options for teminal buffer and starts insert mode",
+    group = terminal_au_group,
+    callback = function()
+        vim.opt.number = false;
+        vim.opt.relativenumber = false;
+        vim.cmd('startinsert')
+    end
+})
