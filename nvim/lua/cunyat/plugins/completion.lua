@@ -2,6 +2,7 @@ return {
     {
         'saghen/blink.cmp',
         -- optional: provides snippets for the snippet source
+        build = "nix run .#build-plugin",
         dependencies = {
             'rafamadriz/friendly-snippets',
             {

@@ -40,3 +40,4 @@ vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 require("cunyat.lazy")
 require("cunyat.autocmds")
 require("cunyat.mappings")
+require("cunyat.neovide")
