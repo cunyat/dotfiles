@@ -18,7 +18,7 @@ set.incsearch = true
 set.smartcase = true
 
 set.wildmode = "longest,list"
-set.completeopt = "menuone,noselect"
+set.completeopt = "menuone,noselect,popup,fuzzy"
 set.termguicolors = true
 
 set.backup = false
@@ -31,9 +31,13 @@ set.smartindent = true
 set.autoindent = true
 set.breakindent = true
 
-vim.cmd.syntax("on")
+-- set.rtp:append("~/dev/cunyat/php.nvim");
 
+vim.cmd.syntax("on")
 vim.api.nvim_command('filetype plugin indent on')
+
+vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 vim.env.NVIM_TUI_ENABLE_TRUE_COLOR = 1
 
@@ -41,3 +45,4 @@ require("cunyat.lazy")
 require("cunyat.autocmds")
 require("cunyat.mappings")
 require("cunyat.neovide")
+

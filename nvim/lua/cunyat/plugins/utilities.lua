@@ -20,4 +20,17 @@ return {
             vim.g.zig_fmt_autosave = 0
         end
     },
+    {
+        'j-hui/fidget.nvim',
+        lazy = false,
+        opts = {
+            notification = {
+                override_vim_notify = true,
+            },
+        },
+    },
+    {
+        'lewis6991/gitsigns.nvim',
+        opts = {},
+    },
 }

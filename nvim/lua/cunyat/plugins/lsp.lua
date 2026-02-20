@@ -31,22 +31,11 @@ return {
             blink.get_lsp_capabilities()
         )
 
-        lspconfig.gopls.setup({ capabilities = capabilities })
-        lspconfig.terraformls.setup({ capabilities = capabilities })
-        lspconfig.tflint.setup({ capabilities = capabilities })
-        lspconfig.nil_ls.setup({ capabilities = capabilities })
-        lspconfig.phpactor.setup({ capabilities = capabilities })
-        lspconfig.jsonnet_ls.setup({ capabilities = capabilities })
-        lspconfig.rust_analyzer.setup({ capabilities = capabilities })
-        lspconfig.clangd.setup({ capabilities = capabilities })
-        lspconfig.dockerls.setup({ capabilities = capabilities })
-        lspconfig.jdtls.setup({ capabilities = capabilities })
-        lspconfig.yamlls.setup(yaml_companion)
-
-        vim.g.zig_fmt_parse_errors = 0
-        vim.g.zig_fmt_autosave = 0
-        lspconfig.zls.setup({
+        vim.lsp.config('*', { capabilities = capabilities });
+        vim.lsp.config('yamlls', yaml_companion);
+        vim.lsp.config('zls', {
             root_dir = lspconfig.util.root_pattern('.git', 'build.zig', 'zls.json'),
+            capabilities = capabilities,
             settings = {
                 zls = {
                     enable_inlay_hints = true,
@@ -56,18 +45,21 @@ return {
                 },
             },
         })
-
-        lspconfig.lua_ls.setup({
+        vim.lsp.config('lua_ls', {
             capabilities = capabilities,
             settings = {
                 Lua = {
-                    runtime = { version = 'Lua 5.1' },
-                    diagnostics = {
-                        globals = { 'bit', 'vim', 'it', 'describe', 'before_each', 'after_each' },
-                    }
+                    runtime = { version = 'Lua 5.3' },
+                    diagnostics = { globals = { 'vim' } }
                 }
             }
         })
+
+        vim.lsp.enable({ 'phpactor', 'gopls', 'terraformls', 'tflint', 'nil_ls', 'jsonnet_ls', 'rust_analyzer', 'clangd',
+            'dockerls', 'jdtls', 'yamlls', 'zls', 'lua_ls' });
+
+        vim.g.zig_fmt_parse_errors = 0
+        vim.g.zig_fmt_autosave = 0
 
         vim.diagnostic.config({
             -- update_in_insert = true,

@@ -1,26 +1,27 @@
 return {
-    'nvim-treesitter/nvim-treesitter',
-    build = ':TSUpdateSync',
-    ---@diagnostic disable-next-line: unused-local
-    config = function(plugin, opts)
-        require("nvim-treesitter.configs").setup(opts)
-    end,
-    dependencies = {
-        'nvim-treesitter/nvim-treesitter-textobjects',
-    },
-    opts = {
-        highlight = { enable = true },
-        indent = { enable = true },
-        incremental_selection = {
-            enable = true,
-            keymaps = {
-                init_selection = '<c-space>',
-                node_incremental = '<c-space>',
-                scope_incremental = '<c-s>',
-                node_decremental = '<M-space>',
+    {
+        'nvim-treesitter/nvim-treesitter',
+        branch = 'main',
+        lazy = false,
+        build = ':TSUpdate',
+        opts = {
+            highlight = { enable = true },
+            indent = { enable = true },
+            incremental_selection = {
+                enable = true,
+                keymaps = {
+                    init_selection = '<c-space>',
+                    node_incremental = '<c-space>',
+                    scope_incremental = '<c-s>',
+                    node_decremental = '<M-space>',
+                },
             },
         },
-        textobjects = {
+    },
+    {
+        'nvim-treesitter/nvim-treesitter-textobjects',
+        branch = 'main',
+        opts = {
             select = {
                 enable = true,
                 lookahead = true, -- Automatically jump forward to textobj
@@ -28,10 +29,16 @@ return {
                     -- You can use the capture groups defined in textobjects.scm
                     ['aa'] = '@parameter.outer',
                     ['ia'] = '@parameter.inner',
-                    ['af'] = '@function.outer',
-                    ['if'] = '@function.inner',
+                    ['am'] = '@function.outer',
+                    ['im'] = '@function.inner',
                     ['ac'] = '@class.outer',
                     ['ic'] = '@class.inner',
+
+                },
+                selection_modes = {
+                    ['@parameter.outer'] = 'v', -- charwise
+                    ['@function.outer'] = 'V',  -- linewise
+                    ['@class.outer'] = 'V',     -- blockwise
                 },
             },
             move = {

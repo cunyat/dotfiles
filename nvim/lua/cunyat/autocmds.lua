@@ -15,13 +15,13 @@ vim.api.nvim_create_autocmd("BufWritePre", { pattern = "*", command = "%s/\\s\\+
 
 local gototest = vim.api.nvim_create_augroup("GoToTest", { clear = true })
 
-vim.api.nvim_create_autocmd("Filetype", {
+vim.api.nvim_create_autocmd("FileType", {
     pattern = { "php" },
     group = gototest,
     callback = function()
         local filter = vim.fn.expand('%:t'):match("(.+)%..+$") .. ".php$"
 
-        vim.keymap.set("n", "gt", function()
+        vim.keymap.set("n", "<leader>lt", function()
             require("telescope.builtin").find_files({
                 path_display = { "truncate" },
                 promt_prefix = filter,
@@ -30,21 +30,6 @@ vim.api.nvim_create_autocmd("Filetype", {
         end)
     end
 })
-
-vim.api.nvim_create_user_command(
-    "ReloadConfig",
-    function()
-        for name, _ in pairs(package.loaded) do
-            if name:match("^cunyat") then
-                package.loaded[name] = nil
-            end
-        end
-
-        dofile(vim.env.MYVIMRC)
-        vim.notify("Nvim configuration reloaded!", vim.log.levels.INFO)
-    end,
-    { bang = true }
-)
 
 vim.api.nvim_create_autocmd('TextYankPost', {
     desc = 'Highlight when yanking text',
