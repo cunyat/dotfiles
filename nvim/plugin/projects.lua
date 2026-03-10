@@ -1,0 +1,73 @@
+-- local filename = vim.fs.joinpath(vim.fn.stdpath('data'), 'projects/data.json');
+--
+-- local function load_projects()
+--     local file = io.open(filename, "r");
+--     if not file then
+--         return {}
+--     end
+--
+--     local json = file:read("*a")
+--     local success, data = pcall(vim.json.decode, json)
+--     if not success then
+--         vim.notify("Failed to read projects data file: " .. data, vim.log.levels.ERROR)
+--         return {}
+--     end
+--
+--     file:close()
+--     return data
+-- end
+--
+-- local function save_projects(data)
+--     local dir = vim.fn.fnamemodify(filename, ':h')
+--     vim.fn.mkdir(dir, 'p')
+--
+--     local file = io.open(filename, 'w')
+--     if not file then return false end
+--
+--     local success, json = pcall(vim.json.encode, data)
+--     if not success then
+--         file:close()
+--         return false
+--     end
+--
+--     file:write(json)
+--     file:close()
+--     return true
+-- end
+--
+-- local projects = load_projects()
+--
+-- vim.notify("loaded projects" .. vim.inspect(projects))
+--
+-- projects = {
+--     {
+--         name = "api",
+--         path = "/home/ramon/dev/deli/api",
+--     }
+-- }
+--
+-- if not save_projects(projects) then
+--     vim.notify("error saving projects data file", vim.log.levels.ERROR)
+-- end
+--
+-- local pickers = require("telescope.pickers")
+-- local finders = require("telescope.finders")
+-- local generic_sorter = require("telescope.config").values.generic_sorter
+--
+-- local function find_projects(opts)
+--     local picker = pickers.new(opts, {
+--         prompt_title = "Find projects",
+--         finder = finders.new_table({
+--             results = projects,
+--             entry_maker = function(entry)
+--                 return entry.name
+--             end
+--         }),
+--         sorter = generic_sorter(opts),
+--
+--     })
+--
+--     picker:find()
+-- end
+--
+-- vim.api.nvim_create_user_command("Projects", find_projects, {})

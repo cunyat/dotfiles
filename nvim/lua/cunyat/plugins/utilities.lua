@@ -33,4 +33,31 @@ return {
         'lewis6991/gitsigns.nvim',
         opts = {},
     },
+    {
+        "olimorris/codecompanion.nvim",
+        dependencies = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+            "github/copilot.vim",
+        },
+        opts = {
+            {
+                interactions = {
+                    chat = {
+                        adapter = "copilot",
+                    },
+                    inline = {
+                        adapter = "copilot",
+                    },
+                    cmd = {
+                        adapter = "copilot",
+                    }
+                },
+            },
+        },
+    },
+    {
+        dir = "~/dev/cunyat/php.nvim",
+        dev = true,
+    }
 }

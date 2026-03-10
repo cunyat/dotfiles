@@ -12,10 +12,12 @@ end, opts)
 vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist, opts)
 
 vim.keymap.set('n', '<leader>sf', function()
-    require('telescope.builtin').find_files()
+    require('telescope.builtin').find_files({
+    })
 end, {})
 vim.keymap.set('n', '<leader>gf', function()
-    require('telescope.builtin').git_files()
+    require('telescope.builtin').git_files({
+    })
 end, {})
 vim.keymap.set('n', '<leader>sw', function()
     local word = vim.fn.expand('<cword>')
@@ -39,6 +41,11 @@ vim.keymap.set('n', '<leader>"', function()
 end, {})
 vim.keymap.set('n', '<leader>st', function()
     require('telescope.builtin').builtin()
+end, {})
+vim.keymap.set('n', '<leader>np', function()
+    require('telescope.builtin').find_files({
+        cwd = vim.fs.joinpath(vim.fn.stdpath('data'), 'lazy')
+    })
 end, {})
 
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })

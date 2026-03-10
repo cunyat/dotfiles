@@ -16,6 +16,7 @@ set.ignorecase = true
 set.hlsearch = true
 set.incsearch = true
 set.smartcase = true
+set.scrolloff = 8
 
 set.wildmode = "longest,list"
 set.completeopt = "menuone,noselect,popup,fuzzy"
@@ -45,4 +46,3 @@ require("cunyat.lazy")
 require("cunyat.autocmds")
 require("cunyat.mappings")
 require("cunyat.neovide")
-

@@ -1,24 +1,19 @@
 return {
-    {
-        "folke/lazydev.nvim",
-        ft = "lua", -- only load on lua files
-        opts = {},
+  {
+    "folke/lazydev.nvim",
+    ft = "lua", -- only load on lua files
+    opts = {
+      cmp = false,
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv", 'require "luv"' } },
+        { path = "busted/library",     words = { "it%(", "describe%(" } },
+        { path = "luassert/library",   words = { "it%(", "describe%(" } },
+        { path = "lpeg/library",       words = { 'require "lpeg"' } },
+      },
+      integrations = {
+        lspconfig = false,
+        cmp = false,
+      },
     },
-    { -- optional blink completion source for require statements and module annotations
-        "saghen/blink.cmp",
-        opts = {
-            sources = {
-                -- add lazydev to your completion providers
-                default = { "lazydev", "lsp", "path", "snippets", "buffer" },
-                providers = {
-                    lazydev = {
-                        name = "LazyDev",
-                        module = "lazydev.integrations.blink",
-                        -- make lazydev completions top priority (see `:h blink.cmp`)
-                        score_offset = 100,
-                    },
-                },
-            },
-        },
-    },
+  },
 }
