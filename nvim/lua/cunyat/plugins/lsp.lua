@@ -6,13 +6,7 @@ return {
       'stevearc/conform.nvim',
       opts = {
         formatters_by_ft = {},
-        format_on_save = function(bufnr)
-          -- Disable with a global or buffer-local variable
-          if vim.g.disable_autoformat or vim.b[bufnr].disable_autoformat then
-            return
-          end
-          return { timeout_ms = 500, lsp_format = 'fallback' }
-        end,
+        format_on_save = { timeout_ms = 500, lsp_format = 'prefer' },
       },
     },
   },
@@ -30,6 +24,8 @@ return {
 
 
     vim.lsp.enable('GitHub Copilot', false)
+    vim.cmd('Copilot disable')
+
     vim.lsp.config('vtsls', {
       filetypes = {
         'vue', 'javascript', 'javascriptreact', 'javascript.jsx', 'typescript', 'typescriptreact', 'typescript.tsx'

@@ -1,63 +1,66 @@
 return {
-    { 'tpope/vim-sleuth' },
-    { 'tpope/vim-fugitive' },
-    { 'mbbill/undotree' },
-    {
-        'folke/zen-mode.nvim',
-        opts = {
-        }
-    },
-    {
-        'folke/trouble.nvim',
-        opts = {}
-    },
-    {
-        'ziglang/zig.vim',
-        config = function()
-            -- don't show parse errors in a separate window
-            vim.g.zig_fmt_parse_errors = 0
-            -- disable format-on-save from `ziglang/zig.vim`
-            vim.g.zig_fmt_autosave = 0
-        end
-    },
-    {
-        'j-hui/fidget.nvim',
-        lazy = false,
-        opts = {
-            notification = {
-                override_vim_notify = true,
-            },
-        },
-    },
-    {
-        'lewis6991/gitsigns.nvim',
-        opts = {},
-    },
-    {
-        "olimorris/codecompanion.nvim",
-        dependencies = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-            "github/copilot.vim",
-        },
-        opts = {
-            {
-                interactions = {
-                    chat = {
-                        adapter = "copilot",
-                    },
-                    inline = {
-                        adapter = "copilot",
-                    },
-                    cmd = {
-                        adapter = "copilot",
-                    }
-                },
-            },
-        },
-    },
-    {
-        dir = "~/dev/cunyat/php.nvim",
-        dev = true,
+  { 'tpope/vim-sleuth' },
+  { 'tpope/vim-fugitive' },
+  { 'mbbill/undotree' },
+  {
+    'folke/zen-mode.nvim',
+    opts = {
     }
+  },
+  {
+    'folke/trouble.nvim',
+    opts = {}
+  },
+  {
+    'ziglang/zig.vim',
+    config = function()
+      -- don't show parse errors in a separate window
+      vim.g.zig_fmt_parse_errors = 0
+      -- disable format-on-save from `ziglang/zig.vim`
+      vim.g.zig_fmt_autosave = 0
+    end
+  },
+  {
+    'j-hui/fidget.nvim',
+    lazy = false,
+    opts = {
+      notification = {
+        override_vim_notify = true,
+      },
+    },
+  },
+  {
+    'lewis6991/gitsigns.nvim',
+    opts = {},
+  },
+  {
+    "olimorris/codecompanion.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+      "nvim-treesitter/nvim-treesitter",
+      {
+        "github/copilot.vim",
+        lazy = true,
+      },
+    },
+    opts = {
+      {
+        interactions = {
+          chat = {
+            adapter = "copilot",
+          },
+          inline = {
+            adapter = "copilot",
+          },
+          cmd = {
+            adapter = "copilot",
+          }
+        },
+      },
+    },
+  },
+  {
+    dir = "~/dev/cunyat/php.nvim",
+    dev = true,
+  }
 }
