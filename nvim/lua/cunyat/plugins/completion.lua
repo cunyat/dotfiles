@@ -27,6 +27,12 @@ return {
       --
       -- See :h blink-cmp-config-keymap for defining your own keymap
       keymap = { preset = 'default' },
+      completion = {
+        list = {
+          selection = { auto_insert = false, auto_select = true },
+        },
+      },
+      signature = { enabled = true },
       sources = {
         default = { "lazydev", "lsp", "path", "snippets", "buffer" },
         providers = {

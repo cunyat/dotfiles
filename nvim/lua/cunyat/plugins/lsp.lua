@@ -6,7 +6,13 @@ return {
       'stevearc/conform.nvim',
       opts = {
         formatters_by_ft = {},
-        format_on_save = { timeout_ms = 500, lsp_format = 'prefer' },
+        format_on_save = function()
+          if vim.g.disable_autoformat or vim.b.disable_autoformat then
+            return false
+          end
+
+          return { timeout_ms = 500, lsp_format = 'prefer' }
+        end,
       },
     },
   },
@@ -24,7 +30,7 @@ return {
 
 
     vim.lsp.enable('GitHub Copilot', false)
-    vim.cmd('Copilot disable')
+    -- vim.cmd('Copilot disable')
 
     vim.lsp.config('vtsls', {
       filetypes = {
