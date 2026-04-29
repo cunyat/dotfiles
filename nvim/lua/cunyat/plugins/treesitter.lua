@@ -28,21 +28,11 @@ return {
     opts = {
       select = {
         enable = true,
-        lookahead = true, -- Automatically jump forward to textobj
-        keymaps = {
-          -- You can use the capture groups defined in textobjects.scm
-          ['aa'] = '@parameter.outer',
-          ['ia'] = '@parameter.inner',
-          ['am'] = '@function.outer',
-          ['im'] = '@function.inner',
-          ['ac'] = '@class.outer',
-          ['ic'] = '@class.inner',
-
-        },
+        lookahead = true,             -- Automatically jump forward to textobj
         selection_modes = {
           ['@parameter.outer'] = 'v', -- charwise
           ['@function.outer'] = 'V',  -- linewise
-          ['@class.outer'] = 'V',     -- blockwise
+          ['@class.outer'] = 'V',     -- linewise
         },
       },
       move = {
@@ -63,15 +53,6 @@ return {
         goto_previous_end = {
           ['[M'] = '@function.outer',
           ['[]'] = '@class.outer',
-        },
-      },
-      swap = {
-        enable = true,
-        swap_next = {
-          ['<leader>a'] = '@parameter.inner',
-        },
-        swap_previous = {
-          ['<leader>A'] = '@parameter.inner',
         },
       },
     },

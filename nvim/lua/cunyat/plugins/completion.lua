@@ -29,7 +29,7 @@ return {
       keymap = { preset = 'default' },
       completion = {
         list = {
-          selection = { auto_insert = false, auto_select = true },
+          selection = { auto_insert = false, preselect = true },
         },
       },
       signature = { enabled = true },
